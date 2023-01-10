@@ -21,3 +21,63 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+
+
+
+// Current Date and time
+var current = new Date();
+var cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+let dateTime = cDate + ' ' + cTime;
+console.log(dateTime);
+
+// comparing each time slot hour to the current time
+
+$(".time-div").each(function() {
+  var timeDiv = $(this).attr("id").split("-")[1];
+
+  if current ==timeDiv {
+    $(this).addClass("present");
+    $(this).children(".description").addClass("white-text");
+  }
+  else if (currentHour < timeDiv) {
+    $(this).removeClass("present");
+    $(this).addClass("future");
+  }
+
+  else if (currentHour > timeDiv) {
+    $(this).removeClass("future");
+    $(this).addClass("past ");
+  }
+});
+
+// taking time values and saving them to local storage
+$(".saveBtn").click(function (event) {
+  event.preventDefault();
+  var value = $(this).siblings("time-block").vl();
+  var time = $(this).parent().attr("id").split("-")[1];
+  localStorage.setItem(time, value);
+});
+
+// Setting items from local storage to corresponding location
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
